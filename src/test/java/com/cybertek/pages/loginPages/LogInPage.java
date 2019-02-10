@@ -2,18 +2,20 @@ package com.cybertek.pages.loginPages;
 
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
+import com.cybertek.utilities.TestBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LogInPage {
+public class LogInPage extends TestBase {
 
 
     public LogInPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    public @FindBy(xpath = "//a[contains(text(),'BriteErpDemo')]")
+    public @FindBy(xpath = "/html/body/div[1]/div/div[2]/a[2]")
     WebElement DemoSelector;
 
     public @FindBy(id = "login")
@@ -35,6 +37,8 @@ public class LogInPage {
         userName.sendKeys(ConfigurationReader.getProperty("username"));
         passWord.sendKeys(ConfigurationReader.getProperty("password"));
         logInBtn.click();
+        wait.until(ExpectedConditions.titleContains("nbo"));
+
 
     }
 
